@@ -1,0 +1,19 @@
+@media (min-width: 768px) and (max-width: 992px) {
+  .nav-right {
+    padding-top: 9px;
+    box-sizing: border-box;
+  }
+  .inputSignIn {
+    margin: 0px 50px;
+    box-sizing: border-box;
+  }
+  #sign-out a {
+    padding: 0 8px;
+    font-size: 0.82em;
+    line-height: 28px;
+    text-decoration: none;
+  }
+  .li-right svg {
+    padding-top: 0px;
+  }
+}

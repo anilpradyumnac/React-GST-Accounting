@@ -1,0 +1,19 @@
+.tt10{
+	stroke: #1FB6FF;
+  stroke-linecap: round;
+  stroke-width: 20;
+}
+
+.tt12{
+	stroke: #1FB6FF;
+  stroke-width: 20;
+}
+
+.tt0 {
+    stroke: #1FB6FF;
+    fill: #1FB6FF;
+}
+.tt1 {
+    stroke: #1FB6FF;
+    fill: #1FB6FF;
+}

@@ -1,0 +1,404 @@
+
+/*SignUP CSS*/
+
+.signup_login_cont {
+  position: fixed;
+  z-index: 10;
+  height: 100vh;
+  width: 100%;
+  right: 0;
+  left: 0;
+}
+
+.si_fptext {
+  float: left;
+  position: relative;
+  top: 16px;
+}
+
+.si_login {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.si_div {
+  margin: 14px;
+  margin-left: 0px;
+}
+
+.si_btnWidth {
+  min-width: 155px;
+  line-height: 1.5em;
+}
+
+.si_btnF {
+  margin-right: 2%;
+  font-size: 11px;
+  text-align: justify;
+  box-sizing: border-box;
+}
+
+.si_fptext span {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #85d7ff;
+}
+
+.si_brandLogo {
+  width: 120px;
+  margin: 0 auto;
+  margin-bottom: 12px;
+}
+
+.si_su_left {
+  min-width: 630px;
+  background-color: white;
+  height: 100vh;
+  width: 50%;
+  padding: 120px;
+  padding-top: 24px;
+  float: left;
+}
+
+.si_su_right {
+  width: 50%;
+  background-color: white;
+  height: 100vh;
+  float: right;
+}
+
+.si_lo_right img {
+  width: 100%;
+  height: 100%;
+}
+
+h2.signup_Divider {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #c0ccda;
+  line-height: 0.4em;
+  margin: 10px 0 20px;
+}
+
+h2.signup_Divider span {
+  background: #fff;
+  padding: 0 10px;
+  font-size: 13px;
+  color: #c0ccda;
+  font-family: 'Lato', sans-serif;
+}
+
+.si_welmsg {
+  color: #273444;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 45px;
+}
+
+.si_screenBtn span {
+  color: #8492ac;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  text-align: center;
+}
+
+.si_screenBtn {
+  margin-bottom: 11px;
+}
+
+
+
+input, input::-webkit-input-placeholder {
+  font-size: 15px;
+}
+
+input[type=email], input[type=password], input[type=text], input[type=number] {
+  width: 100%;
+  height: 40px;
+  /*margin: 12px 0px;*/
+  padding: 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  border: 1.5px solid #c0ccda;
+  color: #3c4858;
+  font-family: 'Lato', sans-serif;
+}
+
+.green {
+  background-color: #13ce66;
+  color: white;
+}
+
+.blue {
+  color: #1fb6ff;
+}
+
+.si_su_right img {
+  max-height: 100%;
+  position: absolute;
+}
+.si_su_right span{
+  position: relative;
+    color: white;
+    font-size: 24px;
+        white-space: nowrap;
+        top: 25%;
+        left: 8%;
+        font-family: 'Lato', sans-serif;
+
+}
+.fb_svg {
+  fill: #29487D;
+}
+
+.fb_svg2 {
+  fill: #FFFFFF;
+}
+
+.btn_med svg {
+  height: 18px;
+  margin-right: 10px;
+}
+
+.gp_svg {
+
+ fill: #FBBB00;
+
+}
+
+.gp_svg2 {
+  fill: #28B446;
+}
+
+.gp_svg3 {
+    fill: #F14336;
+}
+
+.gp_svg4 {
+  fill: #518EF8;
+}
+.sign_overlay{
+  background: #273444;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0.2;
+}
+.si_btnF:hover{
+  background: #29487d;
+  color: white;
+}
+.si_btnG:hover{
+  background: #db4437;
+  color: white;
+}
+.si_btnG:hover .gp_svg, .si_btnG:hover .gp_svg2, .si_btnG:hover .gp_svg3, .si_btnG:hover .gp_svg4{
+  fill: #fff;
+}
+.si_btnF:hover .fb_svg2{
+  fill:#29487d;
+}
+.si_btnF:hover .fb_svg{
+  fill:#fff;
+}
+/* Set a style for all buttons */
+
+.si_inputs input {
+  min-width: 390px;
+}
+.si_closeBtn img{
+  position: absolute;
+    top: 20px;
+    left: 580px;
+    width: 30px;
+}
+button.btn_sm {
+  padding: 7px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  border: 1.5px solid;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+button.btn_med {
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1.5px solid #c0ccda;
+  background-color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  width: 48%;
+  color: #273444;
+  justify-content: center;
+}
+
+button.btn_xl {
+  padding: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1.5px solid;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  width: 100%;
+}
+
+input[type=email]:focus, input[type=password]:focus, input[type=text]:focus,  input[type=number]:focus {
+  border: 1.5px solid #85d7ff;
+  color: #8492a6;
+}
+
+/*SignUP Component*/
+.su_brandLine{
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+.su_brandLine span{
+  color: #273444;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+
+
+}
+.su_siViewBtn{
+  margin-bottom: 8px;
+}
+.su_inputs input{
+  margin: 8px 0px;
+}
+input.squaredFour {
+  width: 20px;
+  position: relative;
+  vertical-align: bottom;
+  margin:0px 0px;
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fcfff4;
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    border-radius: 4px;
+    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    &:after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      border: 3px solid #333;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+    &:hover::after {
+      opacity: 0.5;
+    }
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+.su_siViewBtn span{
+  color: #8492ac;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+input.fname_input{
+  width: 48%;
+  margin-right: 4%;
+}
+input.lname_input{
+  width: 48%;
+}
+
+span.blue {
+  color: #1fb6ff;
+}
+.float_L{
+  float: left;
+}
+.su_robo{
+  border: solid 1px lightgray;
+  height: 70px;
+  width: 150px;
+  float: left;
+  color: gray;
+
+}
+.su_companyCondition{
+  text-align: center;
+  margin-top: 24px;
+}
+.su_companyCondition span{
+  color: #8492ac;
+  font-weight: 500;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+.showpass{
+  color: #8492ac;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  text-align: center;
+  margin: 6px 0px;
+}
+
+.sign_upBtn{
+  margin-top: 15px;
+}
+.fp_header{
+  margin-bottom: 20px;
+}
+.fp_subheader1{
+  color: #273444;
+    font-weight: 600;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.fp_subheader2{
+  color: #8492ac;
+    font-weight: 600;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    text-align: center;
+}
+
+.fp_inputs input{
+  margin: 10px 0px;
+}
+.reset_pass_btn{
+  background: #1FB6FF;
+  height: 40px;
+    line-height: 0.5em;
+    margin: 20px 0px;
+}

@@ -1,0 +1,620 @@
+.AnswerDiv{
+	display: -webkit-inline-box;
+}
+.image-size {
+  height: 43px;
+  width: 43px;
+  border: 1px solid; 
+}
+#userText h3 {
+  font-size: 14px;
+  line-height: 0px; 
+}
+
+#userText h4 {
+  font-size: 8px;
+}
+
+#userText {
+  padding-left: 8px; 
+}
+.followBtn a {
+  position: absolute;
+  right: 65px;
+  font-size: 16px;
+  text-decoration: none;
+  line-height: 33px;
+  color: black; 
+}
+p#topAns {
+  font-size: 15px;
+  line-height: 25px; 
+}
+.inilineBox{
+	display: -webkit-inline-box;
+}
+#formcontent-four {
+  /*9 units*/
+  margin-top: 24px;
+  padding-bottom: 5%; 
+}
+.socialNumbers {
+  @extends .inlineBox;
+  width: 9%; 
+}
+.socialNumbers p {
+  font-size: 12px;
+  padding: 0px 0px 0px 8px;
+  line-height: 18px; 
+}
+
+.socialIcons {
+  
+  width: 68%; 
+  padding-left: 16px;
+}
+.card-logo {
+  height: 40px;
+  width: 50px; }
+.share-svg {
+  /* width 4units, height:6 units*/
+  height: 28.8px;
+  width: 24px;
+  position: absolute;
+  right: 50px; 
+}
+.card-content {
+  height: 627px; 
+}
+#formcontent-one {
+  /* 720/150*3*/
+  margin-top: 14.4px; 
+}
+
+.bookmark-svg {
+  position: absolute;
+  right: 56px;
+  margin: 0px;
+  margin-top: -1px;
+  height: 38.4px;
+  width: 32px;
+  z-index: -1; 
+}
+#formcontent-two {
+  /* 720/150*3*/
+  margin-top: 14.4px; }
+
+.card-ansBtn {
+  /* width 10units, height:8 units*/
+  height: 34.2px;
+  width: 80px;
+  font-size: 16px;
+  background-color: #939605;
+  border-radius: 4px;
+  box-shadow: none;
+  color: #273444; 
+}
+#hiding-website {
+  background-color: gray;
+  height: 700px; 
+}
+
+.forum-container {
+  position: fixed;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  overflow-x: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: 0.2s; }
+
+.forum-container a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.2s; }
+
+.forum-container a:hover,
+.offcanvas a:focus {
+  color: #f1f1f1; }
+ 
+.NoPositioning{
+   visibility: hidden;
+   
+}
+.forumModal{
+  overflow-y: auto;
+   position: fixed;
+  right:0px;
+  top:-2.8%;
+  z-index: 20; 
+  @extends .fontFutura;
+  @extend  .shadow_close;
+  background-color: #fff;
+  border-top-width: 0;
+  border-radius: 12px;
+  height: 100vh;
+}
+.enableForum{
+  display: block;
+}
+
+.disableForum{
+  display: none;
+}
+.toggleButton{
+  position: absolute;
+  left: 0px;
+
+}
+
+.pointerEventEnabled{
+pointer-events: all;
+}
+.pointerEventDisabled{
+pointer-events: none;
+}
+ .card-logo {
+  height: 40px;
+  width: 50px; }   
+#formheader-two {
+  /* 720/150*4*/
+  margin-top: 19.2px;
+  width: 90%; }
+
+
+textarea#textarea {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  font-weight: 700;
+  height: 60px;
+  border-radius: 0.3pc;
+  /* 63 unitys*/
+  width: 100%;
+  resize: none;
+  overflow: hidden; }
+
+.card-header {
+  height: 172.8px; }
+
+.card-header h2 {
+  font-size: 14px;
+  margin-left: 115.5px; }
+
+#formheader-one {
+  /* 720/150*14*/
+  height: 67.2px;
+  /* 720/150*4*/
+  margin-top: 19.2px;
+  /*16 Units*/
+  margin-left: 10%; }
+
+
+
+
+/* Animations */
+
+
+.slideInFromLeft{
+
+  -webkit-animation-name: slideInFromLeft;
+  animation-name: slideInFromLeft;
+  -webkit-animation-duration: 1200ms;
+  animation-duration: 1200ms;
+}
+@-webkit-keyframes slideInFromLeft {
+  0% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0); } }
+ @keyframes slideInFromLeft {
+  0% {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0); } }
+
+.slideOutToLeft{
+  -webkit-animation-name: slideOutToLeft;
+  animation-name: slideOutToLeft;
+  -webkit-animation-duration: 1200ms;
+  animation-duration: 1200ms;
+
+}
+@-webkit-keyframes slideOutToLeft {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    display: none;
+       } 
+  }
+ @keyframes slideOutToLeft {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%); 
+      display: none;
+    } }
+
+
+.slideInUp {
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp;
+  -webkit-animation-duration: 1700ms;
+  animation-duration: 1700ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; }
+
+@-webkit-keyframes slideInUp {
+  0% {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+@keyframes slideInUp {
+  0% {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+  -webkit-animation-duration: 300ms;
+  animation-duration: 300ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; }
+
+@-webkit-keyframes slideInDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+@keyframes slideInDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; }
+
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3); }
+  50% {
+    opacity: 1; } }
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3); }
+  50% {
+    opacity: 1; } }
+
+
+.card-box {
+  padding: 62.4px 0px 35px 32px;
+  transition: 0.1s; }
+
+.card-box hr {
+  margin: 0px;
+  width: 91%;
+  color: green;
+  border-style: solid;
+  border-color: #E5E9F2; }
+
+.card-box p {
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0px 50px 10px 0px;
+  text-align: justify;
+  margin-top: 0px; }
+
+/*Card header 36 units*/
+#forumModal {
+  background-color: white;
+  display: none; }
+
+.card-header {
+  height: 172.8px; }
+
+.card-header h2 {
+  font-size: 14px;
+  margin-left: 115.5px; }
+
+#formheader-one {
+  /* 720/150*14*/
+  height: 67.2px;
+  /* 720/150*4*/
+  margin-top: 19.2px;
+  /*16 Units*/
+  margin-left: 10%; }
+
+.card-box h1 {
+  display: inline-block;
+  font-size: 18px;
+  margin: 0px;
+  padding: 0px;
+  padding-top: 30px; }
+
+.card-logo {
+  margin-top: 3%;
+  height: 60px;
+  width: 90px; }
+
+#formheader-two {
+  /* 720/150*4*/
+  margin-top: 19.2px;
+  width: 90%; }
+
+.card-content {
+  height: 627px; }
+
+textarea#textarea {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  font-weight: 700;
+  height: 60px;
+  border-radius: 0.3pc;
+  /* 63 unitys*/
+  width: 90%;
+  resize: none;
+  margin-top: 10px;
+  overflow: hidden; }
+
+#formcontent-one {
+  /* 720/150*3*/
+  margin-top: 14.4px; }
+
+/* 1280/160*13 & 4*/
+.bookmark-svg {
+  position: absolute;
+  right: 56px;
+  margin: 0px;
+  margin-top: -1px;
+  height: 38.4px;
+  width: 32px;
+  z-index: -1; }
+
+#formcontent-one h1 {
+  /* 7 units*/
+  padding-top: 33.6px;
+  color: #0075a1; }
+
+#formcontent-two {
+  /* 720/150*3*/
+  margin-top: 14.4px; }
+
+.card-ansBtn {
+  /* width 10units, height:8 units*/
+  height: 34.2px;
+  width: 80px;
+  font-size: 16px;
+  background-color: #939605;
+  border-radius: 4px;
+  box-shadow: none;
+  color: #273444; }
+
+.socialIcons {
+  height: 18px;
+  width: 24px; }
+
+.share-svg {
+  /* width 4units, height:6 units*/
+  height: 28.8px;
+  width: 24px;
+  position: absolute;
+  right: 50px; }
+
+#formcontent-three {
+  margin-top: 43.2px; }
+
+.image-size {
+  height: 43px;
+  width: 43px; }
+
+p#topAns {
+  font-size: 15px;
+  line-height: 25px; }
+
+#userText h3 {
+  font-size: 14px;
+  line-height: 0px; }
+
+#userText h4 {
+  font-size: 8px; }
+
+#userText {
+  padding-left: 8px; }
+
+.followBtn a {
+  position: absolute;
+  right: 65px;
+  font-size: 16px;
+  text-decoration: none;
+  line-height: 33px;
+  color: black; }
+
+#formcontent-four {
+  /*9 units*/
+  margin-top: 24px;
+  padding-bottom: 5%; }
+
+.socialNumbers {
+  display: -webkit-inline-box;
+  width: 9%; }
+
+.socialNumbers p {
+  font-size: 12px;
+  padding: 0px 0px 0px 8px;
+  line-height: 18px; }
+
+.allAnsBtn button {
+  width: 90%;
+  background-color: transparent;
+  height: 28.8px;
+  border-radius: 6px; }
+
+.overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-y: hidden;
+  transition: 0.5s; }
+
+#hiding-website {
+  background-color: gray;
+  height: 700px; }
+  .initShow{
+    display: none;
+  }
+
+.closebtn {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  text-decoration: none;
+  color: black;
+  font-size: 24px; }
+
+.hidewebsit {
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 700px;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  overflow-x: hidden;
+  display: none; }
+
+.forum-container {
+  position: fixed;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  overflow-x: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: 0.2s; }
+
+.forum-container a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.2s; }
+
+.forum-container a:hover,
+.offcanvas a:focus {
+  color: #f1f1f1; }
+
+/* Animations */
+.slideInUp {
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp;
+  -webkit-animation-duration: 1700ms;
+  animation-duration: 1700ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; }
+
+@-webkit-keyframes slideInUp {
+  0% {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+@keyframes slideInUp {
+  0% {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+  -webkit-animation-duration: 300ms;
+  animation-duration: 300ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; }
+
+@-webkit-keyframes slideInDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+@keyframes slideInDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    visibility: visible; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; }
+
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3); }
+  50% {
+    opacity: 1; } }
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3); }
+  50% {
+    opacity: 1; } }
+
+/*# sourceMappingURL=main.css.map */

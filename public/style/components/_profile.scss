@@ -1,0 +1,305 @@
+.clr {
+  clear: both;
+}
+
+.mar_top {
+  margin-top: 60px;
+}
+
+.profile_page {
+  width: 100%;
+}
+
+.profile_conatiner {
+  width: 990px;
+  margin: 0 auto;
+}
+
+.profile_leftCont {
+  width: 190px;
+  float: left;
+}
+
+.profile_rightCont {
+  width: 790px;
+  float: left;
+  margin-left: 10px;
+  box-sizing: border-box;
+}
+
+.user_image img {
+  width: 230px;
+  height: 230px;
+  border: 5px solid #00aeef;
+  border-radius: 8px;
+  position: relative;
+}
+
+.user_details {
+  padding: 20px;
+  background: #fff;
+}
+
+.user_name {
+	font-family: 'Lato', sans-serif;
+	font-size: 18px;
+	font-weight: 700;
+	color: #3c4858;
+}
+
+.user_countryName {
+	color: #f3a343;
+	position: relative;
+  margin: 5px 0 20px;
+	font-family: 'Lato', sans-serif;
+
+}
+
+.user_countryName .user_CNText1 {
+  font-size: 14px;
+	margin-top: 13px;
+
+}
+
+.user_countryName .user_CNText2 {
+  font-size: 36px;
+  margin-left: 5px;
+	font-weight: 700;
+}
+
+.user_status {
+  color: #0075a1;
+  line-height: 1.8em;
+	font-family: 'Lato', sans-serif;
+	font-size: 11px;
+	font-weight: 900;
+	font-style: italic;
+	padding-left: 13px;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  margin: 20px 0;
+  background: #DCDCDC
+}
+.user_tsContrdetails{
+	padding: 8px;
+}
+.user_web{
+	color: #3c4858;
+}
+.user_cardDetails {
+  width: 100%;
+  margin: 5px 0;
+	line-height: 1.2em;
+	font-family: 'Lato', sans-serif;
+	font-size: 12px;
+	font-weight: 900;
+	color: #273444;
+
+}
+
+.user_cdText1 {
+  width: 80%;
+  float: left;
+}
+
+.user_cdText2 {
+  width: 20%;
+  float: left;
+}
+.user_socialDetails{
+	margin-top: 20px;
+
+}
+.user_socialDetails div{
+	color: #8492a6;
+	font-weight: 500;
+}
+
+.user_timelinePhotos {
+  background: #fff;
+  margin-top: 15px;
+  width: 100%;
+  height: 300px;
+}
+.user_timelinePhotosHeader {
+  padding: 5px 10px;
+	line-height: 1.2em;
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+	font-weight: 700;
+	color: #273444;
+}
+.profile_coverMap{
+	overflow: hidden;
+	height: 445px;
+	background: #fff;
+
+}
+.map_post{
+	background-color: red;
+	height: 360px;
+	width: 740px;
+	margin: 0 auto;
+
+}
+.mapSet{
+	background-color: #fff;
+	width: 100%;
+	height: 100%;
+	background-position: center;
+	zoom: 0.57;
+	cursor: pointer;
+	background-size: cover;
+}
+.map_attr{
+  stroke-width: 0.7993008249174289;
+    fill: #c0ccda;
+  fill-opacity: 1;
+  stroke: #fff;
+  stroke-opacity: 1;
+}
+/*  cs="100,100"  deleted from path of every map as don;t know what it is for*/
+.map_back{
+  fill: #c0ccda;
+  stroke: #000000;
+  fill-opacity: 1;
+  stroke-width: 1;
+  stroke-opacity: 1;
+}
+.homeCountry{
+  fill: #f3a343;
+}
+.active_count{
+	fill: #1fb6ff;
+}
+.ts-map-area:hover  {
+	fill: #d3dce6;
+}
+.active_count:hover  {
+	fill: #00AEEF;
+}
+.homeCountry{
+   -webkit-animation-name: color_change 2s infinite alternate;
+	-moz-animation: color_change 1s infinite alternate;
+	-ms-animation: color_change 1s infinite alternate;
+	-o-animation: color_change 1s infinite alternate;
+	animation: color_change 1s infinite alternate;
+
+}
+@-webkit-keyframes color_change {
+  from { fill: orange; }
+	to { fill: green; }
+}
+@-moz-keyframes color_change {
+  from { fill: blue; }
+  to { fill: red; }
+}
+@-ms-keyframes color_change {
+  from { fill: blue; }
+	to { fill: red; }
+}
+
+@-o-keyframes color_change {
+  from { fill: orange; }
+  to { fill: green; }
+}
+@keyframes color_change {
+  from { fill: orange; }
+	to { fill: green; }
+}
+
+.user_mapFooter {
+  width: 100%;
+  margin: 15px 20px;
+}
+
+.user_travelTotal {
+  float: left;
+  color: #3BB9FF;
+
+}
+.userTravelledTwo{
+	font-family: 'Lato', sans-serif;
+	font-size: 36px;
+	font-weight: 700;
+}
+.userTravelledThree{
+	font-family: 'Lato', sans-serif;
+	font-size: 12px;
+	font-weight: 700;
+}
+.user_tTText2 {
+  margin-top: 5px;
+}
+
+.user_travelNext {
+  width: 35%;
+  float: left;
+  color: #67c396;
+  margin-left: 30px;
+}
+
+.user_tNCount {
+  margin-top: 5px;
+}
+
+.user_tNCount .user_tNCountText1 {
+  font-size: 32px;
+}
+
+.userTimeline{
+	background: #fff;
+	margin-top: 10px;
+	width: 100%;
+	height: 300px;
+}
+.userTimeline p{
+	text-align: center;
+	padding: 40px;
+	margin: 0px;
+}
+.userTimeline_header{
+	padding: 20px;
+}
+
+
+
+.userDetailsActivity{
+  width: 790px;
+  height: 78px;
+  box-shadow: 0.3px 0.3px 1px #a0aab6; 
+  background-color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.userDetailsActivity_m{
+  flex: 1;
+  padding-top:4;
+
+  width:20%;
+  float:left;
+  cursor: pointer;
+  
+
+}
+
+.SelectedContentContainer{
+  background-color: #fff;
+  height: auto;
+  box-shadow: 0.3px 0.3px 1px #a0aab6; 
+
+} 
+
+.userDetailsActivityLabel{
+
+  width:100%;
+  float:left;
+}
+.userDetailsActivityNumber{
+  width:100%;
+  float:left;
+}

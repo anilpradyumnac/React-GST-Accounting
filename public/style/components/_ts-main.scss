@@ -1,0 +1,889 @@
+.ts-container {
+        width : 100%; 
+    }
+
+.ts-row:before, 
+.ts-row:after {
+        content:"";
+        display: table ;
+         clear:both;
+        
+    }
+
+[class*='ts-col-'] {
+         float: left;
+        min-height: 1px; 
+    }
+
+.ts-mg-l-1{
+	margin-left: calc-col(percentage(0.1),1);
+}   
+.ts-mg-l-2{
+	margin-left: calc-col(percentage(0.1),2);
+}  
+.ts-mg-l-3{
+	margin-left: calc-col(percentage(0.1),3);
+}   
+.ts-mg-l-4{
+	margin-left: calc-col(percentage(0.1),4);
+} 
+.ts-mg-l-5{
+	margin-left: calc-col(percentage(0.1),5);
+}   
+.ts-mg-l-6{
+	margin-left: calc-col(percentage(0.1),6);
+}       
+.ts-mg-l-7{
+	margin-left: calc-col(percentage(0.1),7);
+}   
+.ts-mg-l-8{
+	margin-left: calc-col(percentage(0.1),8);
+}   
+.ts-mg-l-9{
+	margin-left: calc-col(percentage(0.1),9);
+}   
+.ts-mg-l-10{
+	margin-left: calc-col(percentage(0.1),10);
+}  
+
+[class*='ts-col-s-'] {
+         width: 100%;
+    }
+    [class*='ts-col-md-'] {
+         width: 100%;
+    }
+
+    [class*='ts-col-ld-'] {
+         width: 100%;
+    }
+    [class*='ts-col-xl-'] {
+         width: 100%;
+    }
+    [class*='ts-col-xs-'] {
+         width: 100%;
+    }
+    
+    .ts-col-all-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-all-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-all-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-all-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-all-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-all-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-all-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-all-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-all-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-all-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-all-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-all-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-all-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-all-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-all-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-all-16{
+		width: calc-col($base,16);
+	}    
+
+/*Css Declaration for Xtra-Small Device Code:xs */
+@media (min-width: 0px) and (max-width: $xs)  {
+	.iff-pd{
+		padding-left: 1%;
+		padding-right: 1%;
+	}
+	.ts-col-hidden-xs{
+			display: none;
+	 }
+	.ts-col-xs-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-xs-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-xs-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-xs-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-xs-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-xs-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-xs-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-xs-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-xs-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-xs-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-xs-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-xs-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-xs-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-xs-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-xs-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-xs-16{
+		width: calc-col($base,16);
+	} 
+	
+}
+/* Css Declaration for Small screen Devices, Code:s; */
+@media (min-width: $xs) and (max-width: $s)  {
+	.iff-pd{
+		padding-left: 1.5%;
+		padding-right: 1.5%;
+		vertical-align: center;
+		vertical-align: middle;
+	}
+	.ts-col-hidden-s{
+			display: none;
+	 }
+	.ts-col-xs-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-xs-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-xs-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-xs-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-xs-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-xs-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-xs-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-xs-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-xs-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-xs-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-xs-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-xs-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-xs-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-xs-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-xs-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-xs-16{
+		width: calc-col($base,16);
+	} 
+
+	.ts-col-s-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-s-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-s-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-s-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-s-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-s-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-s-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-s-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-s-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-s-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-s-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-s-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-s-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-s-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-s-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-s-16{
+		width: calc-col($base,16);
+	}	
+	
+ 
+
+
+}
+/* Css Declaration for medium screen Devices, Code:md */
+@media (min-width: $s) and (max-width: $md)  {
+	.ts-col-hidden-md{
+			display: none;
+	 }
+
+	.ts-col-xs-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-xs-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-xs-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-xs-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-xs-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-xs-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-xs-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-xs-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-xs-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-xs-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-xs-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-xs-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-xs-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-xs-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-xs-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-xs-16{
+		width: calc-col($base,16);
+	} 
+
+	.ts-col-s-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-s-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-s-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-s-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-s-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-s-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-s-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-s-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-s-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-s-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-s-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-s-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-s-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-s-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-s-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-s-16{
+		width: calc-col($base,16);
+	}
+	.ts-col-md-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-md-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-md-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-md-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-md-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-md-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-md-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-md-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-md-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-md-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-md-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-md-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-md-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-md-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-md-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-md-16{
+		width: calc-col($base,16);
+	}	
+	 
+
+}
+/* Css Declaration for medium screen Devices, Code:ld */
+@media (min-width: $md) and (max-width: $ld)  {
+	.ts-col-hidden-ld{
+			display: none;
+	 }
+	.ts-col-xs-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-xs-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-xs-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-xs-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-xs-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-xs-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-xs-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-xs-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-xs-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-xs-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-xs-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-xs-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-xs-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-xs-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-xs-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-xs-16{
+		width: calc-col($base,16);
+	} 
+
+	.ts-col-s-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-s-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-s-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-s-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-s-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-s-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-s-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-s-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-s-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-s-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-s-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-s-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-s-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-s-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-s-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-s-16{
+		width: calc-col($base,16);
+	}
+	.ts-col-md-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-md-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-md-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-md-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-md-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-md-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-md-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-md-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-md-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-md-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-md-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-md-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-md-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-md-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-md-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-md-16{
+		width: calc-col($base,16);
+	}
+	.ts-col-ld-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-ld-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-ld-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-ld-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-ld-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-ld-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-ld-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-ld-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-ld-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-ld-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-ld-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-ld-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-ld-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-ld-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-ld-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-ld-16{
+		width: calc-col($base,16);
+	}
+	  
+}
+/* Css Declaration for medium screen Devices, Code:xl */
+@media (min-width: $ld)  {
+	.ts-col-hidden-xl{
+			display: none;
+	 }
+	.ts-col-xs-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-xs-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-xs-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-xs-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-xs-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-xs-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-xs-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-xs-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-xs-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-xs-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-xs-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-xs-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-xs-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-xs-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-xs-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-xs-16{
+		width: calc-col($base,16);
+	} 
+
+	.ts-col-s-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-s-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-s-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-s-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-s-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-s-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-s-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-s-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-s-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-s-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-s-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-s-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-s-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-s-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-s-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-s-16{
+		width: calc-col($base,16);
+	}
+	.ts-col-md-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-md-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-md-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-md-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-md-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-md-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-md-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-md-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-md-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-md-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-md-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-md-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-md-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-md-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-md-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-md-16{
+		width: calc-col($base,16);
+	}
+	.ts-col-ld-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-ld-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-ld-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-ld-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-ld-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-ld-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-ld-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-ld-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-ld-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-ld-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-ld-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-ld-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-ld-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-ld-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-ld-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-ld-16{
+		width: calc-col($base,16);
+	}	
+	.ts-col-xl-1{
+		width: calc-col($base,1);
+	}
+	.ts-col-xl-2{
+		width: calc-col($base,2);
+	}
+	.ts-col-xl-3{
+		width: calc-col($base,3);
+	}
+	.ts-col-xl-4{
+		width: calc-col($base,4);
+	}
+	.ts-col-xl-5{
+		width: calc-col($base,5);
+	}
+	.ts-col-xl-6{
+		width: calc-col($base,6);
+	}
+	.ts-col-xl-7{
+		width: calc-col($base,7);
+	}
+	.ts-col-xl-8{
+		width: calc-col($base,8);
+	}		
+	.ts-col-xl-9{
+		width: calc-col($base,9);
+	}
+	.ts-col-xl-10{
+		width: calc-col($base,10);
+	}	
+	.ts-col-xl-11{
+		width: calc-col($base,11);
+	}	
+	.ts-col-xl-12{
+		width: calc-col($base,12);
+	}
+	.ts-col-xl-13{
+		width: calc-col($base,13);
+	}
+	.ts-col-xl-14{
+		width: calc-col($base,14);
+	}
+	.ts-col-xl-15{
+		width: calc-col($base,15);
+	}
+	.ts-col-xl-16{
+		width: calc-col($base,16);
+	}	
+
+}
+

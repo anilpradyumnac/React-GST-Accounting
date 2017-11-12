@@ -1,0 +1,12 @@
+{
+  "description": "",
+  "methods": [
+    {
+      "name": "backToSignin",
+      "docblock": null,
+      "modifiers": [],
+      "params": [],
+      "returns": null
+    }
+  ]
+}

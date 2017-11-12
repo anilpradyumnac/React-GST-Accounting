@@ -1,0 +1,76 @@
+{
+  "description": "",
+  "methods": [
+    {
+      "name": "_onButtonClick",
+      "docblock": null,
+      "modifiers": [],
+      "params": [],
+      "returns": null
+    },
+    {
+      "name": "signUpClose",
+      "docblock": null,
+      "modifiers": [],
+      "params": [],
+      "returns": null
+    },
+    {
+      "name": "onEmailChange",
+      "docblock": null,
+      "modifiers": [],
+      "params": [
+        {
+          "name": "event",
+          "type": null
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "onPasswordChange",
+      "docblock": null,
+      "modifiers": [],
+      "params": [
+        {
+          "name": "event",
+          "type": null
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "signUpHandle",
+      "docblock": null,
+      "modifiers": [],
+      "params": [],
+      "returns": null
+    },
+    {
+      "name": "onhelloClick",
+      "docblock": null,
+      "modifiers": [],
+      "params": [],
+      "returns": null
+    },
+    {
+      "name": "handleForget",
+      "docblock": null,
+      "modifiers": [],
+      "params": [],
+      "returns": null
+    },
+    {
+      "name": "onLogin",
+      "docblock": null,
+      "modifiers": [],
+      "params": [
+        {
+          "name": "e",
+          "type": null
+        }
+      ],
+      "returns": null
+    }
+  ]
+}

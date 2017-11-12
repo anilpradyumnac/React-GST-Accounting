@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+
+@mixin text-center {
+  text-align: center;
+}
+
+@mixin clear {
+   clear: both;
+}
+
+@mixin ts-font {
+  font-family: $base-font;
+  color: $text-steel;
+}
+
+@mixin ts-heads{
+  font-family: $base-font;
+  color: $ts-smoke;
+  font-weight: 700;
+}

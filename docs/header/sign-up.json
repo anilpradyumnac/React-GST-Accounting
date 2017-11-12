@@ -1,0 +1,72 @@
+{
+  "description": "",
+  "methods": [
+    {
+      "name": "onFNameChange",
+      "docblock": null,
+      "modifiers": [],
+      "params": [
+        {
+          "name": "event",
+          "type": null
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "onLNameChange",
+      "docblock": null,
+      "modifiers": [],
+      "params": [
+        {
+          "name": "event",
+          "type": null
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "onPassChange",
+      "docblock": null,
+      "modifiers": [],
+      "params": [
+        {
+          "name": "event",
+          "type": null
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "onEmailChange",
+      "docblock": null,
+      "modifiers": [],
+      "params": [
+        {
+          "name": "event",
+          "type": null
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "onSignup",
+      "docblock": null,
+      "modifiers": [],
+      "params": [
+        {
+          "name": "event",
+          "type": null
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "backToSignin",
+      "docblock": null,
+      "modifiers": [],
+      "params": [],
+      "returns": null
+    }
+  ]
+}

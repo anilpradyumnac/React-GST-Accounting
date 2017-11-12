@@ -1,0 +1,217 @@
+
+@media (min-width: 0px) and (max-width: 768px) {
+  .brandLogo-img {
+    display: none;
+  }
+  #search_text {
+    padding-top: 4px;
+  }
+  #sign-out a {
+    font-size: 0.8em;
+    line-height: 28px;
+  }
+  /*8 units*/
+  .inputSignIn {
+    margin: 0px 50px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  #search-form {
+    height: 48px;
+    margin-top: 0px;
+  }
+  .nav-right {
+    box-sizing: border-box;
+  }
+  .li-right svg {
+    max-height: 32px;
+    padding-top: 0px;
+    padding-left: 25px;
+    height: 30px;
+  }
+  .logo {
+    display: none;
+  }
+  #search-container {
+    margin-left: 5%;
+  }
+  #search_button {
+    min-width: 23px;
+    max-width: 12.5%;
+    width: 23px;
+    margin-right: 4px;
+    background-image: url(../../public/image/Navbar/NavbarMobile/search-mobile.svg);
+  }
+  #search_text {
+    height: 36px;
+  }
+  #search_text::-webkit-input-placeholder {
+    color: transparent;
+    text-indent: -9999px;
+    background-image: url(../../public/image/Navbar/NavbarMobile/logo-m.svg);
+    height: 24px;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+  }
+  input#search_text {
+    padding-top: 8px;
+  }
+  #search_text::-moz-placeholder {
+    /* Firefox 19+ */
+    color: transparent;
+    text-indent: -9999px;
+    background-image: url("http://placehold.it/123x17&text=PlaceholderImage");
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+  }
+  #search_text:-moz-placeholder {
+    /* Firefox 18- */
+    color: transparent;
+    text-indent: -9999px;
+    background-image: url("http://placehold.it/123x17&text=PlaceholderImage");
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+  }
+  #search_text:-ms-input-placeholder {
+    /* IE 10- */
+    color: transparent;
+    text-indent: -9999px;
+    background-image: url("http://placehold.it/123x17&text=PlaceholderImage");
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+  }
+
+
+  // Cards
+
+
+
+  .loc_act{
+  display: block;
+  justify-content: center;
+  text-align: center;
+}
+.loc_mob{
+  padding-left: 45%;
+}
+.headerIcon_mar{
+  margin: 0px;
+}
+  .l-content {
+    width: 100%;
+    padding: 0px;
+    overflow: hidden;
+  }
+  .post-container {
+    width: 100vw;
+  }
+  .post-content-box {
+    height: auto;
+    margin: 0 auto;
+    border-radius: 0px;
+  }
+  .right-column {
+    display: none;
+  }
+  .left-column {
+    width: 100vw;
+  }
+  .add_card_container {
+    display: none;
+  }
+  .post-content-pad {
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+  }
+  .post-header {
+    margin-bottom: 20px;
+  }
+  .post-header-left {
+    /*max-width: 93%;*/
+  }
+  .post-header-Right {
+    /*max-width: 7%*/
+  }
+  .post-info h2 {
+    max-width: 205px;
+  }
+
+  .post-Action-Left {
+    /*min-width: 41%;
+    margin-top: -5px;*/
+    padding-bottom: 0px;
+    min-width: 130px;
+  }
+  .post-Action-Dislike-Btn {
+    padding-right: 25px;
+    box-sizing: border-box;
+  }
+  .post-bookIcon {
+    position: absolute;
+    right: 10px;
+  }
+  .post-media img {
+    width: 100%;
+    height: auto;
+    vertical-align: bottom;
+  }
+  .post-user {
+    display: none;
+  }
+  .post-user-mobile {
+    border-radius: 3px;
+    padding-top: 20px;
+    text-decoration: none;
+    overflow: visible;
+    display: block;
+    height: 100%;
+    width: 100%;
+    top: 0;
+  }
+  .overlay-text img, .post-user-mobile img {
+    height: 34px;
+    width: 34px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid;
+    color: #8492a6;
+    cursor: pointer;
+  }
+  .overlay-text h2 {
+    position: absolute;
+    left: 0px;
+    color: white;
+  //  font: bold 10px Helvetica, Sans-Serif;
+    padding: 10px;
+    top: 0px;
+    margin: 0px 0px;
+    background: rgba(132, 146, 166, 0.7);
+    height: 34px;
+    width: 34px;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+  .post-location {
+    padding-top: 0px;
+  }
+  .post-info {}
+  .post-userRankTwo,.post-userRankRest {
+    margin-left: 10px;
+  }
+}
+
+.inputSignIn {
+  margin: 0px 50px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+
+
+@media (min-width: 540px) and (max-width: 768px) {
+  .post-bookIcon {
+    position: relative;
+    right: -5px;
+  }
+}

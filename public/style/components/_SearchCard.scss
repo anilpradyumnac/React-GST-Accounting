@@ -1,0 +1,26 @@
+
+.post-content-box-search {
+   float: left; 
+  height: auto;
+  padding: 20px 0px 8px 0px;
+  box-sizing: border-box;
+  color: black;
+  background-color: white;
+  color: white;
+  width: 350px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0 0 1px 1px rgba(31, 45, 61, .15);
+  -webkit-box-shadow: 0 0 1px 1px rgba(31, 45, 61, .15);
+  box-shadow: 0 0 1px 1px rgba(31, 45, 61, .15);
+}
+.SearchContainer{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;  
+ 
+}
+.SearchItems{
+    
+}

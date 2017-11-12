@@ -1,0 +1,47 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+/// Regular font family
+
+$base-font: 'Lato', sans-serif;
+
+//@tripshire font-family 
+
+$text-steel: #273444;
+
+$text-slate: #3C4858;
+
+$text-silver: #8492A6;
+
+$ts-blue : #008eef;
+
+$light-ts: #85D7FF;
+
+$brand-ts: #1FB6FF;
+
+$dark-ts: #009EEB;
+
+$ts-green: #13CE66;
+
+$ts-smoke: #E0E6ED;
+
+$ts-snow: #F9FAFC;
+
+$ts-darkSmoke: #C0CCDA;
+
+$ts-darkSnow: #E5E9F2;
+
+
+//==BASE SIZE==
+
+$base : percentage(0.0625);
+
+// ===SCREEN SIZES ===
+
+$xs : 768px;
+
+$s : 992px;
+
+$md : 1366px;
+
+$ld : 1920px;

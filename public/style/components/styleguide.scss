@@ -1,0 +1,166 @@
+
+.color-pallet-div {
+    width: 185px;
+    height: 80px;
+    border-radius: 6px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.color-pallet-black {
+    @extend .color-pallet-div;
+    background-color: #1F2D3D;
+}
+
+.color-pallet-steel {
+    @extend .color-pallet-div;
+    background-color: #273444;
+}
+
+.color-pallet-slate {
+    @extend .color-pallet-div;
+    background-color: #3C4858;
+}
+
+.color-pallet-silver {
+    @extend .color-pallet-div;
+    background-color: #8492A6;
+}
+
+.color-pallet-blue {
+    @extend .color-pallet-div;
+    background-color: #1FB6FF;
+}
+
+.color-pallet-positive {
+    @extend .color-pallet-div;
+    background-color: #13CE66;
+}
+
+.color-pallet-negative {
+    @extend .color-pallet-div;
+    background-color: #FF4949;
+}
+
+.color-pallet-warning {
+    @extend .color-pallet-div;
+    background-color: #FFC82C;
+}
+
+.color-pallet-div-vertical {
+    width: 185px;
+    height: 80px;
+    background-color: #1F2D3D;
+    margin-right: 10px;
+    border-bottom: 1px solid #fff;
+}
+
+
+
+/* TypoGraphy */
+
+.fontFamily-futura {
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+.typoSpan {
+    @extend .fontFamily-futura;
+    padding: 5px;
+    margin: 5px;
+}
+
+.fontDiv {
+    border: 1.5px solid #273444;
+    width: 500px;
+    overflow-x: scroll hidden;
+    overflow-y: hidden;
+    padding: 5px;
+    margin-bottom: 10px
+}
+
+.fontSize-xxxl {
+    font-size: 38px;
+}
+
+.fontSize-xxl {
+    font-size: 28px;
+}
+
+.fontSize-xl {
+    font-size: 20px;
+}
+
+.fontSize-l {
+    font-size: 18px;
+}
+
+.fontSize-m {
+    font-size: 16px;
+}
+
+.fontSize-s {
+    font-size: 14px;
+}
+
+.fontSize-xs {
+    font-size: 12px;
+}
+
+.fontSize-xxs {
+    font-size: 10px;
+}
+
+.fontWeight-3 {
+    font-weight: 300;
+}
+
+.fontWeight-4 {
+    font-weight: 400;
+}
+
+.fontWeight-5 {
+    font-weight: 500;
+}
+
+.fontWeight-6 {
+    font-weight: 600;
+}
+
+.fontWeight-7 {
+    font-weight: 700;
+}
+
+.textAlign-left {
+    text-align: left;
+}
+
+.textAlign-right {
+    text-align: right;
+}
+
+.textAlign-center {
+    text-align: center;
+}
+
+.textTransform-lowercase {
+    text-transform: lowercase;
+}
+
+.textTransform-uppercase {
+    text-transform: uppercase;
+}
+
+.textTransform-capitalize {
+    text-transform: capitalize;
+}
+
+.shadow_subtle{
+
+    box-shadow: 1.5px 1.5px 8px #a0aab6;
+
+}
+.shadow_close{
+
+    box-shadow: 0.5px 0.5px 4.5px #a0aab6;
+}
