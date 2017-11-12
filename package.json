@@ -1,7 +1,7 @@
 {
   "name": "tripshire",
   "version": "1.0.0",
-  "description": "React for the application tripshire",
+  "description": "React for the application Hotex Uniform",
   "main": "Main.js",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --watch --port 2000",
