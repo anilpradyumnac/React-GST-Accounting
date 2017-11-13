@@ -14,14 +14,14 @@ import Books from 'material-ui/svg-icons/av/library-books';
 
 const ListItemsData =[
 	  			{
-	  				Icon :<Avatar size={50} color='#3F51B5' style={{backgroundColor: '#00ffffff'}}  icon={<Add />} />,
+	  				Icon :<Avatar size={50} color='#3F51B5' style={{backgroundColor: '#ffffff'}}  icon={<Add />} />,
 	    			name: 'Add Item',
 	    			rightIcon:<Arrow />,
 	    			subtitle: 'To Add New Item to inventory',
 	   				clickFunc: ()=>{browserHistory.push('/Add')}
 	  			},
 				  {
-				 	Icon :<Avatar size={50} color='brown' style={{backgroundColor: '#00ffffff'}}  icon={<Cart />} />,
+				 	Icon :<Avatar size={50} color='brown' style={{backgroundColor: '#ffffff'}}  icon={<Cart />} />,
 	    			name: 'Inventory',
 				  	rightIcon:<Arrow />,
 				    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
@@ -30,7 +30,7 @@ const ListItemsData =[
 				  },
 
 				  {
-				  	Icon :<Avatar size={50} color='red' style={{backgroundColor: '#00ffffff'}}  icon={<Editor />} />,
+				  	Icon :<Avatar size={50} color='red' style={{backgroundColor: '#ffffff'}}  icon={<Editor />} />,
 	    			name: 'Create Bill',
 				    rightIcon:<Arrow />,
 				    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
@@ -38,7 +38,7 @@ const ListItemsData =[
 				    clickFunc: ()=>{browserHistory.push('/Bill')}
 				  },
 				  {
-				  	Icon :<Avatar size={50} color='green' style={{backgroundColor: '#00ffffff'}}  icon={<Books />} />,
+				  	Icon :<Avatar size={50} color='green' style={{backgroundColor: '#ffffff'}}  icon={<Books />} />,
 	    			name: 'Show Ledger',
 				   	rightIcon:<Arrow />,
 				    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
@@ -46,7 +46,7 @@ const ListItemsData =[
 				     clickFunc: ()=>{alert('Hello')}
 				  },
 				  {
-				  	Icon :<Avatar size={50} color='black' style={{backgroundColor: '#00ffffff'}}  icon={<Info />} />,
+				  	Icon :<Avatar size={50} color='black' style={{backgroundColor: '#ffffff'}}  icon={<Info />} />,
 	    			name: 'About Developer',
 				    rightIcon:<Arrow />,
 				    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',

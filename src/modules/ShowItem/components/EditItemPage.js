@@ -154,7 +154,7 @@ export default class EditItemPage extends Component{
 	     	var toseekfrom = arr[dataKeyx];
  			var {ItemCategory,CGST,IGST,MaxSize,MinSize,SGST, SizeStep,checked,SizePrices,Discount} = toseekfrom;
 	  
-	        self.setState({Discount:5,animating:false,initializer:MinSize,ItemCategory,CGST,IGST,MaxSize,MinSize,SGST,dataKeyx, SizeStep,checked,KeyBoardShowing:false,checker:false,SizePrices:self.setterDefault.bind(self,MinSize,MaxSize,SizeStep,SizePrices)()});
+	        self.setState({Discount:Discount,animating:false,initializer:MinSize,ItemCategory,CGST,IGST,MaxSize,MinSize,SGST,dataKeyx, SizeStep,checked,KeyBoardShowing:false,checker:false,SizePrices:self.setterDefault.bind(self,MinSize,MaxSize,SizeStep,SizePrices)()});
 	        //console.log(this.state);
 	        console.log('DOne');
 	         
