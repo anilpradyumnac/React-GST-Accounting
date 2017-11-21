@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import CoverImage from'../../../../public/image/HomePage/banner.jpg';
 import {Link, browserHistory} from 'react-router';
@@ -43,7 +44,7 @@ const ListItemsData =[
 				   	rightIcon:<Arrow />,
 				    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
 				    subtitle: 'To Know Date Wise Ledger Details',
-				     clickFunc: ()=>{alert('Hello')}
+				    clickFunc: ()=>{browserHistory.push('/Ledger')}
 				  },
 				  {
 				  	Icon :<Avatar size={50} color='black' style={{backgroundColor: '#ffffff'}}  icon={<Info />} />,
@@ -65,6 +66,7 @@ class Homepage extends Component{
 	render(){
 		return(
 			<div>
+			
 				<div className="HotexLogo" style={{position: 'fixed' }} >
 				 	<img  style={{width: '100%', height: '50vh',objectFit:'cover',marginBottom: 0}} src={CoverImage}></img>
  		         

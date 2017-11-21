@@ -5,8 +5,9 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import If from './../../utils/components/If.js';
-
+import {Link, browserHistory} from 'react-router';
 import firebase from './../../../stub/FirebaseConfig';
+const isOnline = require('is-online'); 
 export default class AddPage extends Component{
 	constructor(props) {
 	  super(props);
@@ -60,7 +61,18 @@ export default class AddPage extends Component{
         }
     }
 	componentDidMount(){
-		setTimeout(()=>{this.setState({animating:false})},3000)
+        var self = this;
+        isOnline().then(online => {
+            if(!online){
+                alert('There is no Internet Connection, We are re-directing you back to homepage');
+                browserHistory.push('/');
+            }
+            else{
+                 
+                 setTimeout(()=>{self.setState({animating:false})},3000);
+       
+            }
+        });
 	}
 	render(){
 		var self = this;

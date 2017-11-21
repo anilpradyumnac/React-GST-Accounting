@@ -15,7 +15,7 @@ export default withRouter(React.createClass({
   render(){
    
     var oneDay = 24 * 60 * 60 * 1000; 
-    var firstDate = new Date(2017,11,1);
+    var firstDate = new Date(2017,11,15);
     var secondDate = new Date();
     var diffDays = Math.round((firstDate.getTime() - secondDate.getTime())/(oneDay));
    // console.log(diffDays);
