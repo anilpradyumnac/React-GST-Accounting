@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import CoverImage from'../../../../public/image/HomePage/banner.jpg';
+import CoverImage from'../../../../public/image/HomePage/banner.png';
 import {Link, browserHistory} from 'react-router';
 import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
@@ -61,6 +61,27 @@ class Homepage extends Component{
 		super(props);
 
 	}
+	componentDidMount(){
+		var todayDate = new Date();
+		var dd = todayDate.getDate().toString();
+        var mm = (todayDate.getMonth()+1).toString();
+        var yyyy = todayDate.getFullYear().toString();
+        if(dd<10){
+          dd='0'+dd;
+        } 
+        if(mm<10){
+          mm='0'+mm;
+        }
+		var StoredDate = localStorage.getItem('currentCounterDate');
+		if(StoredDate == (dd+mm+yyyy)){
+			console.log('Not Changing Date')
+		}
+		else{
+			localStorage.setItem('currentCounterDate',dd+mm+yyyy);
+			localStorage.setItem('counterValue','0');
+		}
+
+	}
 
 
 	render(){
@@ -68,7 +89,7 @@ class Homepage extends Component{
 			<div>
 			
 				<div className="HotexLogo" style={{position: 'fixed' }} >
-				 	<img  style={{width: '100%', height: '50vh',objectFit:'cover',marginBottom: 0}} src={CoverImage}></img>
+				 	<img  style={{width: '100%', height: '50vh',objectFit:'stretch',marginBottom: 0}} src={CoverImage}></img>
  		         
 				</div> 
 				<div style={{position:'relative',top: '50vh' }}>

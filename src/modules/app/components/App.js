@@ -9,13 +9,14 @@ export default withRouter(React.createClass({
   componentWillMount(){
    if(!this.props.children){
       this.props.router.replace('/Home');
-   } 
+   }
+
   },
 
   render(){
    
     var oneDay = 24 * 60 * 60 * 1000; 
-    var firstDate = new Date(2017,11,15);
+    var firstDate = new Date("01-01-2018");
     var secondDate = new Date();
     var diffDays = Math.round((firstDate.getTime() - secondDate.getTime())/(oneDay));
    // console.log(diffDays);

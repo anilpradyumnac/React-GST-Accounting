@@ -12,24 +12,18 @@ import {Link, browserHistory} from 'react-router';
 import Divider from 'material-ui/Divider';
 const IcontItem = (<Avatar size={50} color='#3F51B5' style={{backgroundColor: '#ffffff'}}  icon={<Add />} />);
 const isOnline = require('is-online'); 
+//var db = require('diskdb');
+//db = db.connect('./../../../../Data', ['bills']);
+
 export default class ShowLedgerPage extends Component {
 	componentDidMount(){
-		isOnline().then(online => {
-			if(!online){
-				alert('There is no Internet Connection, We are re-directing you back to homepage');
-				browserHistory.push('/');
-			}
-			else{
-
-			}
-		});
-		  //console.log('hdhdhdhdhdhd');
-		  this.exec.bind(this,this.state.SelectedDateVal)();
+		 //console.log(db);
+		 this.exec.bind(this,this.state.SelectedDateVal)();
 		
 	}
 	constructor(props) {
 	  super(props); 
-	  var today = new Date("2017-09-21");
+	  var today = new Date();
       var dd = today.getDate()
       var mm = today.getMonth()+1;
       var yyyy = today.getFullYear();
@@ -48,31 +42,42 @@ export default class ShowLedgerPage extends Component {
 		
 	}
 	async exec(SelectedDateVal){
+		console.log('Date Passed',SelectedDateVal);
 		var arr = [];
 	    var arr1 =[];
-	    let dd = SelectedDateVal.getDate()
-      	let mm = SelectedDateVal.getMonth()+1;
-        let yyyy = SelectedDateVal.getFullYear();
+	    var dd = SelectedDateVal.getDate();
+      	var mm = SelectedDateVal.getMonth()+1;
+        var yyyy = SelectedDateVal.getFullYear();
       	if(dd<10){
     		dd='0'+dd;
 		} 
 	 	if(mm<10){
     		mm='0'+mm;
 		}
-
-	    var DateToSearch = dd+mm+yyyy;
-		 firebase.database().ref('bills/'+DateToSearch).on('value',  (snapshot) => {
-	        console.log(snapshot.val());
-			for(var key in snapshot.val())
-				{   
-					let i = key;
-					arr1.push(i);
-    				arr.push(snapshot.val()[key]['bill']);
-				}
-				var Daytots = this.CalculateTotals.bind(this,arr)();
-		 		this.setState({BillData:arr,BillKey:arr1, Daytots:Daytots,SelectedDateVal:SelectedDateVal});
+        
+       
+	    var DateToSearch = dd+''+mm+''+yyyy;
+	    // alert('Searching for D:'+DateToSearch);
+	    var db = JSON.parse(localStorage.getItem(DateToSearch.toString()));
+	    if(!db){
+	    	console.log("DB is empty");
+	    	var a = [];
+	    	localStorage.setItem(DateToSearch.toString(),JSON.stringify(a));
+	    }
+	    else{
+	    	for(var key in db)
+			{   
+				let i = key;
+				arr1.push(i);
+    			arr.push(db[i]);
 			}
-		);
+			var Daytots = this.CalculateTotals.bind(this,arr)();
+			console.log("DB isnt Empty, writing data");
+	    	console.log(db);
+			this.setState({BillData:arr,BillKey:arr1, Daytots:Daytots,SelectedDateVal:SelectedDateVal});
+
+	    }
+
 	}
 	CalculateTotals(BillData){
 		console.log('Calculating...');
@@ -128,7 +133,7 @@ export default class ShowLedgerPage extends Component {
   			
  	 		var html = '';
   			for(var bill in allBills){
-  				html = html +allBills[bill].BillHTML + '<div style="height:400">&nbsp;</div>';
+  				html = html +allBills[bill].BillHTML + '<br/><br/><br/><br/><br/><br/><br/><br/><br/><div style="height=5px">&nbsp;</div>';
 			}
   			print(html);
 	

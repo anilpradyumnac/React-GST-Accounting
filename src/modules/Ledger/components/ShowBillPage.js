@@ -13,20 +13,18 @@ export default class ShowBillPage extends Component{
 	}
     DeleteBillBackup(){
     	var self = this;
-    	isOnline().then(online => {
-    		if(!online){
-    			alert("The Bill  Can't Be Deleted, Please Check your Internet Connection");
-    		}
-    		else{
     			if(confirm("Are You Sure You Wan't to Delete This Bill")==true){
     				let inv = localStorage.getItem("InvoiceDateToDel");
     				inv = inv.replace('/','');
     				inv = inv.replace('/','');
     				console.log(inv);
-    				firebase.database().ref('bills/'+inv+'/'+self.props.params.id).remove().then(()=>{alert('Removed Successfully'); browserHistory.push('/Ledger')});			
+    				var db = JSON.parse(localStorage.getItem(inv.toString()));
+    				db.splice(self.props.params.id,1);
+    				localStorage.setItem(inv.toString(),JSON.stringify(db));
+          
+    				browserHistory.push('/Ledger')
+    				//firebase.database().ref('bills/'+inv+'/'+self.props.params.id).remove().then(()=>{alert('Removed Successfully'); browserHistory.push('/Ledger')});			
     			}
-    		}
-    	});
     	
     }
 	render(){

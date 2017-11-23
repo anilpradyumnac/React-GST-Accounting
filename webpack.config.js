@@ -10,7 +10,9 @@ require('babel-runtime/regenerator');
 console.log(__dirname);
 module.exports = {
     entry: [path.resolve(__dirname, 'src', 'Main.js')],
-
+    node: {
+     fs: 'empty'
+    },
     output: {
         path: __dirname+'/output',
         publicPath: '/',

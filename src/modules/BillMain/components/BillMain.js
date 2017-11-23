@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import firebase from './../../../stub/FirebaseConfig';
 import Button from 'material-ui/RaisedButton';
 import Modal from 'react-responsive-modal';
+
+import {Link, browserHistory} from 'react-router';
 import If from './../../utils/components/If.js';
 import TextField from 'material-ui/TextField';
 import RandomSelector from './Random';
@@ -11,10 +13,12 @@ import { print } from 'html-to-printer';
 import converter from 'number-to-words';
 const isOnline = require('is-online'); 
 
+import DatePicker from 'material-ui/DatePicker';
+
 class BillMain extends Component{
 	constructor(props) {
 	  super(props);
-	  this.state = {KeyBoardShowing:false,ExchangeChecked:false,modalDatax:[],ShowOtherModal:false ,invUnderOperation:'',PartyName:'Cash',PartyAddr:'',PartyGSTIN:'',billSettingModal:false,SpecialQTY:0,SpecialQTYPrice:0,SpecialQTYPricex:0,ChangingFunc:()=>{},QtySelModal:false,data:[],dataKey:[],modalVisible:false,modalData:[],cart:[],cartModalVisible:false};
+	  this.state = {dateProvided:false,Tid:'',KeyBoardShowing:false,ExchangeChecked:false,modalDatax:[],ShowOtherModal:false ,invUnderOperation:'',PartyName:'Cash',PartyAddr:'',PartyGSTIN:'',billSettingModal:false,SpecialQTY:0,SpecialQTYPrice:0,SpecialQTYPricex:0,ChangingFunc:()=>{},QtySelModal:false,data:[],dataKey:[],modalVisible:false,modalData:[],cart:[],cartModalVisible:false};
 	}
 	componentWillMount(){
     	var self = this;
@@ -25,8 +29,11 @@ class BillMain extends Component{
 
     				var arr = JSON.parse(localStorage.getItem('ShowPageData'));
     				alert('It Seems Like You dont have a working Internet Connection!! Launching in Offline Mode');
-    				this.setState({data:arr,dataKey:arr1,showText:`No Internet Connection: Loading Old ${arr1.length} Items(s)...... `});
-    			}
+    				setTimeout(()=>{
+              self.setState({data:arr,dataKey:arr1,showText:`No Internet Connection: Loading Old ${arr1.length} Items(s)...... `});
+          
+            },320)
+          }
     			else{
 	   				firebase.database().ref('items').on('value', (snapshot) => {
 				 		console.log(snapshot.val());
@@ -38,6 +45,8 @@ class BillMain extends Component{
 							arr1.push(i);
 	    					arr.push(snapshot.val()[key].data);
 						}
+            localStorage.setItem("ShowPageKeys",JSON.stringify(arr1));
+            localStorage.setItem("ShowPageData",JSON.stringify(arr));
 						self.setState({data:arr,dataKey:arr1});
 	   			  	 });
 	   			}
@@ -46,88 +55,88 @@ class BillMain extends Component{
 	CreateRow(Sn,Name,Qty,rate,discount,Igst,Sgst,Cgst){
       var RowStart ="<TR>";
       //SNo Start
-      var SnoStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' HEIGHT='19' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>&nbsp;";
-      var SnoValue = Sn;
+      var SnoStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' HEIGHT='19' ALIGN='right' VALIGN='TOP' SDNUM='1033;1033;General'><FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'>&nbsp;";
+      var SnoValue = Sn+' ';
       var SnoEnd = "<br/></FONT></TD>";
       var SnoFinal = SnoStart + SnoValue + SnoEnd;
 
       //Item Name
-      var NameStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
+      var NameStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'><FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'>";
       var NameValue = Name;
       var NameEnd = '<br/></FONT></TD>';
       var NameFinal = NameStart + NameValue + NameEnd; 
 
       // Item Qty
-      var QtyStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>&nbsp;";
+      var QtyStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'>&nbsp;";
       var QtyValue = Qty;
       var QtyEnd = "<br/></FONT></TD>";
       var QtyFinal = QtyStart +QtyValue + QtyEnd;
       
 
       //Rate 
-      var RateStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>&nbsp;";
+      var RateStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'>&nbsp;";
       var RateValue = rate;
       var RateEnd = "<br/></FONT></TD>";
       var RateFinal = RateStart + RateValue + RateEnd;
       
       //Amt
-      var AmtStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
+      var AmtStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'>";
       var AmtValue = RateValue * QtyValue;
       var AmtEnd = "<br/></FONT></TD>";
       var AmtFinal = AmtStart + AmtValue + AmtEnd;
       
       //Discount
-      var DiscountStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
+      var DiscountStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'>";
       var DiscountValue = discount;
       var DiscountEnd = "<br/></FONT></TD>";
       var DiscountFinal = DiscountStart + DiscountValue + DiscountEnd;
 
       //Taxable
-      var TaxableStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
+      var TaxableStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'>";
       var TaxableValue = ((AmtValue - ((AmtValue * DiscountValue )/100))).toFixed(2);
       var TaxableEnd = "<br/></FONT></TD>";
       var TaxableFinal = TaxableStart + TaxableValue + TaxableEnd;
 
       //IGSTRate
-      var IgstRateStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
-      var IgstRateValue = Igst;
+      var IgstRateStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'>";
+      var IgstRateValue = 0;
       var IgstRateEnd = "<br/></FONT></TD>";
-      var IgstRateFinal = IgstRateStart + IgstRateValue + IgstRateEnd;
+      var IgstRateFinal = IgstRateStart + '-' + IgstRateEnd;
 
       //IGSTAmt
-      var IgstAmtStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
+      var IgstAmtStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'>";
       var IgstAmtValue = (TaxableValue * IgstRateValue / 100).toFixed(2) ;
       var IgstAmtEnd = "<br/></FONT></TD>";
-      var IgstAmtFinal = IgstAmtStart + IgstAmtValue + IgstAmtEnd;
+      var IgstAmtFinal = IgstAmtStart + '-' + IgstAmtEnd;
 
       //SGSTRate
-      var SgstRateStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
+      var SgstRateStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'>";
       var SgstRateValue = Sgst;
       var SgstRateEnd = "<br/></FONT></TD>";
       var SgstRateFinal = SgstRateStart + SgstRateValue + SgstRateEnd;
      
       //SGSTAmt
-      var SgstAmtStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
+      var SgstAmtStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'>";
       var SgstAmtValue = (TaxableValue * SgstRateValue / 100).toFixed(2) ;
       var SgstAmtEnd = "<br/></FONT></TD>";
       var SgstAmtFinal = SgstAmtStart + SgstAmtValue + SgstAmtEnd;
       
 
       //CGSTRate
-      var CgstRateStart = " <TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
+      var CgstRateStart = " <TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'>";
       var CgstRateValue = Cgst;
       var CgstRateEnd = "<br/></FONT></TD>";
       var CgstRateFinal = CgstRateStart + CgstRateValue + CgstRateEnd;
 
       //CGSTAmt
-      var CgstAmtStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
+      var CgstAmtStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'>";
       var CgstAmtValue = (TaxableValue * CgstRateValue / 100).toFixed(2) ;
       var CgstAmtEnd = "<br/></FONT></TD>";
       var CgstAmtFinal = CgstAmtStart + CgstAmtValue + CgstAmtEnd;
 
 
       //ItemTotal
-      var ItemTotalStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'><FONT FACE='Calibri' COLOR='#000000'>";
+      var ItemTotalStart = "<TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'><FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'>";
       IgstAmtValue = parseFloat(IgstAmtValue);
       SgstAmtValue = parseFloat(SgstAmtValue);
       CgstAmtValue = parseFloat(CgstAmtValue);
@@ -148,6 +157,105 @@ class BillMain extends Component{
       var RowFinal = C2 + CgstRateFinal + CgstAmtFinal + ItemTotalFinal + RowEnd;
 
       return RowFinal;
+   }
+   generateTransactionId(){
+    var self = this;
+    var TransactionID;
+     if(self.state.dateProvided){
+        var TidGet = '';
+        if(self.state.Tid){
+          TidGet = self.state.Tid;
+        }
+        else{
+          TidGet = prompt("Please Enter Bill Number","");
+        }
+        var today = self.state.dateProvided;
+        var dd = today.getDate()
+        var mm = today.getMonth()+1;
+        var yyyy = today.getFullYear();
+        if(dd<10){
+          dd='0'+dd;
+        } 
+        if(mm<10){
+          mm='0'+mm;
+        }
+
+         TransactionID = dd +'/'+ mm+'/' +yyyy+'/'+TidGet;
+        
+     }
+     else{
+       // var Counter = parseInt(localStorage.getItem('counterValue'));
+        var TransactionID;
+          var Counter;
+           var datex = new Date();
+           var dd = datex.getDate()
+           var mm = datex.getMonth()+1;
+           var yyyy = datex.getFullYear();
+           if(dd<10){
+             dd='0'+dd;
+            } 
+           if(mm<10){
+              mm='0'+mm;
+            }
+            let date = dd +''+mm+''+yyyy;
+            var db = JSON.parse(localStorage.getItem((date).toString()));
+            console.log("We Found Bills: at",(date).toString());
+            console.log(db);
+            if(db){
+              Counter = db.length;
+            }
+            else{
+              localStorage.setItem((dd+mm+yyyy).toString(),JSON.stringify([]));
+              Counter = 0;
+            }
+              TransactionID = dd +'/'+ mm+'/' +yyyy+'/'+Counter;
+              //alert(TransactionID);
+              
+           
+     }
+     return TransactionID;
+   }
+   generateTransactionDate(){
+    var today;
+    var self=this;
+    if(self.state.dateProvided){
+      today = self.state.dateProvided;
+    }
+    else{
+      today = new Date();
+    }
+    var dd = today.getDate()
+        var mm = today.getMonth()+1;
+        var yyyy = today.getFullYear();
+        if(dd<10){
+          dd='0'+dd;
+        } 
+        if(mm<10){
+          mm='0'+mm;
+        }
+    var TDate = dd+'/'+mm+'/'+yyyy;
+    return TDate;
+   }
+   generatePostingDate(){
+    var today;
+    var self=this;
+    if(self.state.dateProvided){
+      today = self.state.dateProvided;
+    }
+    else{
+      today = new Date();
+    }
+    var dd = today.getDate()
+        var mm = today.getMonth()+1;
+        var yyyy = today.getFullYear();
+        if(dd<10){
+          dd='0'+dd;
+        } 
+        if(mm<10){
+          mm='0'+mm;
+        }
+    var TDate = dd+''+mm+''+yyyy;
+    return TDate;
    }
   async printHTML(cart) {
     // only available on android 
@@ -174,18 +282,7 @@ class BillMain extends Component{
       	sec = '0'+sec;
       }
 
-      var unique = hours+''+mins+''+sec;
-      var val = await localStorage.getItem('Count');
-      	if(val!=null){
-      		let igVal = parseInt(val);
-      		unique = igVal;
-      		++igVal;
-      		localStorage.setItem('Count',igVal);
-      	}
-      	else{
-      		unique= 1;
-      		localStorage.setItem('Count',1);
-      	}
+      
 
      
       if(dd<10){
@@ -195,35 +292,20 @@ class BillMain extends Component{
     		mm='0'+mm;
 		}	
 
-      var BillTop = "<TABLE style='margin-bottom:40px;margin-top:20px ' CELLSPACING='0'COLS='15'BORDER='0'><COLGROUP><COL WIDTH='20'><COL WIDTH='84'><COL WIDTH='27'><COL WIDTH='27'><COL WIDTH='27'><COL WIDTH='30'><COL WIDTH='31'><COL WIDTH='28'><COL WIDTH='2'><COL WIDTH='33'><COL WIDTH='32'><COL WIDTH='26'><COL WIDTH='26'><COL WIDTH='26'><COL WIDTH='25'></COLGROUP><TBODY><TR><TD STYLE='border-top: 3px solid #000000;border-left: 3px solid #000000;'COLSPAN='6'WIDTH='165'HEIGHT='44'ALIGN='LEFT'VALIGN='TOP'SDNUM='1033;1033;General'><B><FONT FACE='Calibri'COLOR='#000000'>GSTIN:07ABMPS8815J1ZZ</FONT></B></TD><TD STYLE='border-top: 3px solid #000000;'COLSPAN='3'WIDTH='165'HEIGHT='44'ALIGN='LEFT'VALIGN='TOP'SDNUM='1033;1033;General'></TD><TD STYLE='border-top: 3px solid #000000; 'COLSPAN='5'WIDTH='165'HEIGHT='44'ALIGN='Left'VALIGN='TOP'SDNUM='1033;1033;General'><B><FONT FACE='Calibri'COLOR='#000000'>Tax Invoice</FONT></B></TD><TD STYLE='border-top: 3px solid #000000;border-right: 3px solid #000000;border-right: 3px solid #000000;'COLSPAN='3'WIDTH='162'ALIGN='RIGHT'VALIGN='TOP'SDNUM='1033;1033;General'><B><FONT FACE='Calibri'COLOR='#000000'>Mob:9810645190<br/>9718744976</FONT></B></TD></TR><TR style='line-height: 17px;'><TD STYLE='border-left: 3px solid #000000; border-right: 3px solid #000000;border-bottom: 3px solid #000000'COLSPAN='16'HEIGHT='60'ALIGN='CENTER'VALIGN='TOP'SDNUM='1033;1033;General'><B><FONT FACE='Calibri'SIZE='5'COLOR='#000000'>Hotex School Uniform<br/><FONT SIZE='3'>3/5,Veer Savarkar Block,Shakarpur,Delhi-110092<br/>Email:harvinder22011969@gmail.com</FONT></FONT></B></TD></TR>";
+      var BillTop = "<TABLE style='margin-bottom:40px;margin-top:15px;margin-left:12.8px;margin-right:12.5px; position:relative; left:-0px; ' CELLSPACING='0'COLS='15'BORDER='0'><COLGROUP><COL WIDTH='22'><COL WIDTH='50'><COL WIDTH='26'><COL WIDTH='20'><COL WIDTH='20'><COL WIDTH='20'><COL WIDTH='23'><COL WIDTH='28'><COL WIDTH='1'><COL WIDTH='20'><COL WIDTH='25'><COL WIDTH='20'><COL WIDTH='23'><COL WIDTH='10'><COL WIDTH='10'></COLGROUP><TBODY><TR><TD STYLE='border-top: 3px solid #000000;border-left: 3px solid #000000;'COLSPAN='6'WIDTH='165'HEIGHT='44'ALIGN='LEFT'VALIGN='TOP'SDNUM='1033;1033;General'><B><FONT FACE='Calibri'COLOR='#000000'>GSTIN:07ABMPS8815J1ZZ</FONT></B></TD><TD STYLE='border-top: 3px solid #000000;'COLSPAN='3'WIDTH='165'HEIGHT='44'ALIGN='LEFT'VALIGN='TOP'SDNUM='1033;1033;General'></TD><TD STYLE='border-top: 3px solid #000000; 'COLSPAN='5'WIDTH='165'HEIGHT='44'ALIGN='Left'VALIGN='TOP'SDNUM='1033;1033;General'><B><FONT FACE='Calibri'COLOR='#000000'>Tax Invoice</FONT></B></TD><TD STYLE='border-top: 3px solid #000000;border-right: 3px solid #000000;border-right: 3px solid #000000;'COLSPAN='3'WIDTH='162'ALIGN='left'VALIGN='TOP'SDNUM='1033;1033;General'><B><FONT FACE='Calibri'COLOR='#000000'>9810645190&nbsp;&nbsp;&nbsp; <br/>9718744976&nbsp;&nbsp;&nbsp;</FONT></B></TD></TR><TR style='line-height: 17px;'><TD STYLE='border-left: 3px solid #000000; border-right: 3px solid #000000;border-bottom: 3px solid #000000'COLSPAN='16'HEIGHT='60'ALIGN='CENTER'VALIGN='TOP'SDNUM='1033;1033;General'><B><FONT FACE='Calibri'SIZE='5'COLOR='#000000'>Hotex School Uniform<br/><FONT SIZE='3'>3/5,Veer Savarkar Block,Shakarpur,Delhi-110092<br/>Email:harvinder22011969@gmail.com</FONT></FONT></B></TD></TR>";
 
       //Now Individual Bill Specific Details
       
       	//R1
-      var InvNum;
-      
-      if(this.state.ExchangeChecked){
-      	 
-      	
-      }
-      else{
-      	InvNum = yyyy+'/'+dd+'/'+mm+'/'+unique;
-      }	
+      var InvNum =  this.generateTransactionId.bind(this)();
       var PartyName = this.state.PartyName;
       if(PartyName.length<1){
       	PartyName = 'Cash';
       }
       var BillHeadR1 = "<TR style='line-height: 15px;'><TD ROWSPAN='1' height='24' COLSPAN='3' STYLE=' border-right: 0px solid #000000;border-bottom: 0px solid #000000; border-left: 3px solid #000000;'> <FONT FACE='Calibri' COLOR='#000000'> <B>Invoice Number:</B><br/> </FONT></TD><TD ROWSPAN='1' height='24' COLSPAN='7' STYLE=' border-right: 1px solid #000000;border-bottom: 0px solid #000000; border-left: 0px solid #000000;'> <FONT FACE='Calibri' COLOR='#000000'> "+InvNum+"<br/> </FONT></TD><TD COLSPAN='3' ROWSPAN='1' STYLE=' border-right: 0px solid #000000;border-bottom: 0px solid #000000; border-left: 1px solid #000000;'> <FONT FACE='Calibri' COLOR='#000000'> <B>Name:</B><br/> </FONT></TD><TD COLSPAN='3' ROWSPAN='1' STYLE=' border-right: 3px solid #000000;border-bottom: 0px solid #000000; border-left: 0px solid #000000;'> <FONT FACE='Calibri' COLOR='#000000'> "+PartyName+"<br/> </FONT></TD></TR>";
       
-      var InvDate;
-     	//R2
-      if(!this.state.ExchangeChecked){
-      	InvDate = dd+'/'+mm+'/'+yyyy;
-      } 
-      else{
-      	await localStorage.getItem('INVDATE').then((a)=>{InvDate = a;});
-      	 
-      }
+      var InvDate = this.generateTransactionDate.bind(this)();
+     
       
       
 
@@ -238,7 +320,7 @@ class BillMain extends Component{
       var BillHeadR4 = "<TR style='line-height: 15px;'><TD ROWSPAN='1' height='24' COLSPAN='3' STYLE=' border-right: 0px solid #000000;border-bottom: 3px solid #000000; border-left: 3px solid #000000;'> <FONT FACE='Calibri' COLOR='#000000'> <b>State Code:</b><br/> </FONT></TD><TD ROWSPAN='1' height='24' COLSPAN='7' STYLE=' border-right: 1px solid #000000;border-bottom: 3px solid #000000; border-left: 0px solid #000000;'> <FONT FACE='Calibri' COLOR='#000000'> 07 <br/> </FONT></TD><TD COLSPAN='4' ROWSPAN='1' STYLE=' border-right: 0px solid #000000;border-bottom: 3px solid #000000; border-left: 1px solid #000000;'> <FONT FACE='Calibri' COLOR='#000000'> <b>State Code:</b><br/> </FONT></TD><TD COLSPAN='2' ROWSPAN='1' STYLE=' border-right: 3px solid #000000;border-bottom: 3px solid #000000; border-left: 0px solid #000000;'> <FONT FACE='Calibri' COLOR='#000000'> 07<br/> </FONT></TD></TR>";  
       	//MainItemBox Headings
 
-      var BillHeadings = "<TR><TD STYLE=' border-right: 1px solid #000000;border-bottom: 3px solid #000000; border-left: 3px solid #000000;' COLSPAN='10' HEIGHT='19' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'> <B><FONT FACE='Times New Roman' SIZE='3'>Ship To Party: On The Counter Sale</FONT></B></TD><TD STYLE=' border-right: 3px solid #000000;border-bottom: 3px solid #000000; border-left: 1px solid #000000;' COLSPAN='6' HEIGHT='19' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'> <B><FONT FACE='Times New Roman' SIZE='3'>Transportation Mode Not Applicable</FONT></B></TD></TR><TR><TD STYLE='border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' HEIGHT='38' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>S no</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Product <br/>Description</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Qty</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Rate</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Amt</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Dis</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Taxable</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='3' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>IGST</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>SGST</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>CGST</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Total</FONT></TD></TR><TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Rate</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Amt</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Rate</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Amt</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Rate</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Amt</FONT></TD></TR>";
+      var BillHeadings = "<TR><TD STYLE=' border-right: 1px solid #000000;border-bottom: 3px solid #000000; border-left: 3px solid #000000;' COLSPAN='10' HEIGHT='19' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'> <B><FONT FACE='Times New Roman' SIZE='3'>Ship To Party: On The Counter Sale</FONT></B></TD><TD STYLE=' border-right: 3px solid #000000;border-bottom: 3px solid #000000; border-left: 1px solid #000000;' COLSPAN='6' HEIGHT='19' ALIGN='left' VALIGN='TOP' SDNUM='1033;1033;General'> <B><FONT FACE='Times New Roman' SIZE='3'>Transportation Mode Not Applicable</FONT></B></TD></TR><TR><TD STYLE='border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' HEIGHT='38' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>S</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Product <br/>Description</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Qty</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Rate</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Amt</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Dis</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ROWSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Taxable</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='3' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>IGST</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>SGST</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>CGST</FONT></TD><TD STYLE='border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ROWSPAN='2' ALIGN='Left' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Total</FONT></TD></TR><TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Rate</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Amt</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Rate</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Amt</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Rate</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='CENTER' VALIGN='MIDDLE' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'>Amt</FONT></TD></TR>";
 
       //Generating Bill Top Portion
 
@@ -346,8 +428,8 @@ class BillMain extends Component{
       
         
 
-      if(count<11){
-        count = 10-count;
+      if(count<10){
+        count = 9-count;
         for(i=0;i<count;i++){
           FilledRows = FilledRows + BlankRow;
         }
@@ -405,18 +487,19 @@ class BillMain extends Component{
         TotalAmt = parseFloat(TotalAmt) + parseFloat(tot);   
         TotalAmt = parseFloat(TotalAmt).toFixed(2);     
       }
-      var BillEnd = "<TR><TD STYLE='line-height:14px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' COLSPAN='9' HEIGHT='100' ALIGN='LEFT' VALIGN='CENTER' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman'><CENTER><B>Terms and Conditions</B></CENTER> 1 Goods once Sold will not be Taken Back. <br/>2 All Dispute are Subject to Delhi Jurisdiction. <br/>3 Interest @18% will be charged after due of Payment.</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000; border-bottom: 3px solid black' height='100' COLSPAN='7' ROWSPAN='2' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'> <B><FONT FACE='Times New Roman'>certified that the particulars given are true and correct<br/></FONT></B><B><FONT FACE='Times New Roman' SIZE='3'>For : HOTEX SCHOOL UNIFORM <br/><br/><br/>(Authorised Signatory.)</FONT></B></TD></TR><TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 3px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000'colspan='9'><FONT FACE='Times New Roman' SIZE='3'><B>Bank</B> : Syndicate Bank, Raja Tower,Laxmi Nagar, Delhi - 110092 <br/><B>Acc No.</B> : 90501010006070 <br/><b>IFSC Code</b> : SYNB0009050</FONT></TD></TR></TBODY></TABLE>";
-      var TotalRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' HEIGHT='19' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='3'>Total</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+ QtyTotal+" <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+ TaxableTotal+" <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+ IgstTotal+" <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+ SgstTotal+"<br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+ CgstTotal+" <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+ TotalAmt+" <br/> </FONT></TD></TR>";
+
+      var BillEnd = "<TR><TD STYLE='line-height:11px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' COLSPAN='9' HEIGHT='60' ALIGN='LEFT' VALIGN='CENTER' SDNUM='1033;1033;General'> <FONT SIZE='0.8em' FACE='Times New Roman'><CENTER><B>Terms and Conditions</B></CENTER> 1 Goods once Sold will not be Taken Back. <br/>2 All Dispute are Subject to Delhi Jurisdiction. <br/>3 Interest @18% will be charged after due of Payment.</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000; border-bottom: 3px solid black' height='50' COLSPAN='7' ROWSPAN='2' ALIGN='CENTER' VALIGN='TOP' SDNUM='1033;1033;General'> <B><FONT SIZE='0.8em' FACE='Times New Roman'>certified that the particulars given are true and correct<br/></FONT></B><B><FONT FACE='Times New Roman' SIZE='1.5em'>For : HOTEX SCHOOL UNIFORM <br/><br/><br/>(Authorised Signatory.)</FONT></B></TD></TR><TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 3px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000'colspan='9'><FONT FACE='Times New Roman' SIZE='0.8em'><B>Bank</B> : Syndicate Bank, Raja Tower,Laxmi Nagar, Delhi - 110092 <br/><B>Acc No.</B> : 90501010006070 <br/><b>IFSC Code</b> : SYNB0009050</FONT></TD></TR></TBODY></TABLE>";
+      var TotalRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' HEIGHT='19' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Times New Roman' SIZE='3'>Total</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> "+ QtyTotal+" <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> "+ TaxableTotal+" <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='2' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'> "+ IgstTotal+" <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> "+ SgstTotal+"<br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> "+ CgstTotal+" <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> "+ TotalAmt+" <br/> </FONT></TD></TR>";
      
-      var BeforeTaxRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' COLSPAN='9' HEIGHT='19' ALIGN='LEFT' VALIGN='TOP' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='3'>Total Amount in words</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='3'>Total Amount Before Tax</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+TaxableTotal+" <br/> </FONT></TD></TR>";
+      var BeforeTaxRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' COLSPAN='9' HEIGHT='19' ALIGN='LEFT' VALIGN='TOP' BGCOLOR='#CDCDCD' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='3'>Total Amount in words</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='1.8'>Total Amount Before Tax</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> "+TaxableTotal+" <br/> </FONT></TD></TR>";
       var TotInWord = (converter.toWords(Math.round(TotalAmt)).toUpperCase()) + " ONLY";
-      var CGSTRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' COLSPAN='9' ROWSPAN='5' HEIGHT='47' ALIGN='center' VALIGN='center' SDNUM='1033;1033;General'> <FONT SIZE='5' FACE='Calibri' COLOR='#000000'> "+TotInWord+" <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='3'>Add : CGST</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+CgstTotal+" <br/> </FONT></TD></TR>";
+      var CGSTRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 1px solid #000000' COLSPAN='9' ROWSPAN='5' HEIGHT='47' ALIGN='center' VALIGN='center' SDNUM='1033;1033;General'> <FONT SIZE='5' FACE='Calibri' COLOR='#000000'> "+TotInWord+" <br/> </FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Times New Roman' SIZE='1.8'>Add : CGST</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='1.8' FACE='Calibri' COLOR='#000000'> "+CgstTotal+" <br/> </FONT></TD></TR>";
      
-      var IGSTRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='3'>Add : IGST</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+IgstTotal+" <br/> </FONT></TD></TR>";
+      var IGSTRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='1.8'>Add : IGST</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'> "+IgstTotal+" <br/> </FONT></TD></TR>";
       
-      var SGSTRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='3'>Add : SGST</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+SgstTotal+" <br/> </FONT></TD></TR>";
+      var SGSTRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='1.8'>Add : SGST</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' SIZE='1.8' COLOR='#000000'> "+SgstTotal+" <br/> </FONT></TD></TR>";
       
-      var TotRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='3'>Total Amount After Tax</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> "+TotalAmt+" <br/> </FONT></TD></TR><TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='3'>GST on Reverse Charges</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD></TR>";
+      var TotRow = "<TR><TD STYLE='border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='2'>Total Amount After Tax</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT SIZE='2.1' FACE='Calibri' COLOR='#000000'> "+TotalAmt+" <br/> </FONT></TD></TR><TR><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000' COLSPAN='6' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Times New Roman' SIZE='1.8'>GST on Reverse Charges</FONT></TD><TD STYLE='border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000' ALIGN='LEFT' VALIGN='TOP' SDNUM='1033;1033;General'> <FONT FACE='Calibri' COLOR='#000000'> <br/> </FONT></TD></TR>";
      
       var BillToPrint = BillStart + FilledRows + TotalRow + BeforeTaxRow+CGSTRow+IGSTRow+ SGSTRow + TotRow+ BillEnd;
       
@@ -435,10 +518,27 @@ class BillMain extends Component{
       ObjectToPost['TotalTax'] = TotalAmt- TaxableTotal;
       ObjectToPost['TotalAmt'] = TotalAmt;
       
-
+      //var Counterx = parseInt(localStorage.getItem('counterValue'));
+     // ++Counterx;
+      //localStorage.setItem('counterValue',Counterx.toString());
+      setTimeout(()=>{
+        
+           let dateToPostOn = self.generatePostingDate();
+           let dbToStoreIn = JSON.parse(localStorage.getItem(dateToPostOn.toString()));
+           if(!dbToStoreIn){
+            dbToStoreIn = [];
+           }
+           dbToStoreIn.push(ObjectToPost);
+           localStorage.setItem(dateToPostOn.toString(),JSON.stringify(dbToStoreIn));
+          //  firebase.database().ref(('bills/'+dateToPostOn+'/')).push({bill:ObjectToPost }).then((rep)=>{self.setState({invUnderOperation:InvNum,path:rep.path});});
+        
+    
       print((BillToPrint));
+      browserHistory.push('/Home');
 
-   
+
+      },500)
+         
   }	
 	_showOtherModal(){
   		this.setState({ShowOtherModal:true});
@@ -857,14 +957,14 @@ class BillMain extends Component{
             			  </div>
             			  	<div style={{flex:1,position: 'relative',top:50 }}>
             			  		<TextField value={this.state.PartyName} onChange={(PartyName)=>{self.setState({PartyName:PartyName.target.value});}} style={{flex:1,width:'88%'}} disabled={false}   hintText='Enter Party Name'  floatingLabelText="Party Name" />&nbsp;&nbsp;
-                  				<TextField value={this.state.PartyAddr} onChange={(PartyAddr)=>{self.setState({PartyAddr:PartyAddr.target.value});}} style={{flex:1,width:'88%'}} disabled={false}   hintText='Enter Party Address'  floatingLabelText="Party Address" />&nbsp;&nbsp;
-	            			 	<TextField value={this.state.PartyGSTIN} onChange={(PartyGSTIN)=>{self.setState({PartyGSTIN:PartyGSTIN.target.value});}} style={{flex:1,width:'88%'}} disabled={false}   hintText='Enter Party GSTIN'  floatingLabelText="Party GSTIN" />&nbsp;&nbsp;
-                  				<Button label={'Delete Invoice'} labelColor='#FFC107' labelStyle={{fontSize:20}} backgroundColor={'#3F51B5'} style={{alignSelf: 'center', justifyContent:  'space-around', alignItems: 'center', elevation: 4, height:45,width: '96%',marginLeft: '2%',marginBottom: 5,paddingBottom: 5,marginRight: '0.5%'}} onClick={()=>{self.deleteInvoice.bind(this)()}}></Button>
-                                <center>
-                               		 <br/><br/>
-                               		 <CheckBox label='Click, If You are trying to exchange'   onCheck={(val)=>{this.setState({ExchangeChecked:!this.state.ExchangeChecked})}}  checked={this.state.ExchangeChecked}/>
-	            			 	 </center> 	
-	            			 	 
+                  			<TextField value={this.state.PartyAddr} onChange={(PartyAddr)=>{self.setState({PartyAddr:PartyAddr.target.value});}} style={{flex:1,width:'88%'}} disabled={false}   hintText='Enter Party Address'  floatingLabelText="Party Address" />&nbsp;&nbsp;
+	            			 	  <TextField value={this.state.PartyGSTIN} onChange={(PartyGSTIN)=>{self.setState({PartyGSTIN:PartyGSTIN.target.value});}} style={{flex:1,width:'88%'}} disabled={false}   hintText='Enter Party GSTIN'  floatingLabelText="Party GSTIN" />&nbsp;&nbsp;
+                  			<div style={{flex:1}}>
+                          <h2>Please Leave Blank if not exchange: </h2>
+                          <DatePicker textFieldStyle={{cursor:'pointer'}} value={this.state.dateProvided} onChange={(event,date)=>{this.setState({dateProvided:date})}} hintText="Click To Select Date" />
+                        </div>        
+	            			 	  <TextField value={this.state.Tid} onChange={(Tid)=>{self.setState({Tid:Tid.target.value});}} style={{flex:1,width:'88%'}} disabled={false}   hintText='Enter Party GSTIN'  floatingLabelText="Bill Number (if Exchange)" />&nbsp;&nbsp;
+                        
 	            			 </div>	
 	            			  <Button label='Print Bill' labelColor='#FFC107' labelStyle={{fontSize:20}} backgroundColor='#3F51B5' style={{position: 'absolute',bottom: 0,alignSelf: 'center', justifyContent:  'space-around', alignItems: 'center', elevation: 4, height:35,width: '96%',marginLeft: '2%',marginBottom: 5,paddingBottom: 5,marginRight: '0.5%'}}   onClick={()=>{self.printHTML.bind(self,self.state.cart)()}}>
 						  	</Button>
